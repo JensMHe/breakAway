@@ -15,6 +15,7 @@ namespace BreakAway.Entities
         IDbSet<Lodging> Lodgings { get; }
         IDbSet<Payment> Payments { get; }
         IDbSet<Reservation> Reservations { get; }
+        IDbSet<Address> Addresses { get; }
 
         int SaveChanges();
     }
@@ -37,6 +38,7 @@ namespace BreakAway.Entities
             Lodgings = Set<Lodging>();
             Payments = Set<Payment>();
             Reservations = Set<Reservation>();
+            Addresses = Set<Address>();
         }
 
         public IDbSet<Activity> Activities { get; private set; }
@@ -48,6 +50,7 @@ namespace BreakAway.Entities
         public IDbSet<Lodging> Lodgings { get; private set; }
         public IDbSet<Payment> Payments { get; private set; }
         public IDbSet<Reservation> Reservations { get; private set; }
+        public IDbSet<Address> Addresses { get; private set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -255,7 +258,7 @@ namespace BreakAway.Entities
         {
             entity.HasKey(k => k.Id).ToTable("Address");
 
-            entity.Property(k => k.Id).HasColumnName("AddressID");
+            entity.Property(k => k.Id).HasColumnName("ID");
 
             entity.Property(k => k.CountryRegion).HasColumnName("CountryRegion");
 

@@ -1,0 +1,68 @@
+﻿@model BreakAway.Models.Contact.IndexViewModel
+
+@{
+    ViewBag.Title = "Contact";
+}
+<br />
+@if (!string.IsNullOrEmpty(ViewBag.message))
+{
+    <p>@ViewBag.message</p>
+}
+<br />
+<button class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Contact")'">+ Add new contact</button>
+<hr />
+@using (Html.BeginForm("Index", "Contact", FormMethod.Get))
+{
+    <div class="form-group row">
+        <div style="padding:5px" class="col-xs-1">
+            @Html.TextBoxFor(p => p.NumberOfResults, new { @class = "form-control", @disabled="disabled"})
+        </div>
+        <div style="padding:5px" class="col-xs-1">
+            @Html.TextBoxFor(p => p.Search.Id, new { @class = "form-control", @placeholder = "Id", @type = "number" })
+        </div>
+        <div style="padding:5px" class="col-xs-1">
+            @Html.TextBoxFor(p => p.Search.Title, new { @class = "form-control", @placeholder = "Title" })
+        </div>
+        <div style="padding:5px" class="col-xs-3">
+            @Html.TextBoxFor(p => p.Search.FirstName, new { @class = "form-control", @placeholder = "First name" })
+        </div>
+        <div style="padding:5px" class="col-xs-3">
+            @Html.TextBoxFor(p => p.Search.LastName, new { @class = "form-control", @placeholder = "Last name" })
+        </div>
+        <div style="padding:5px" class="col-xs-2">
+            @Html.DropDownListFor(x => x.Search.SelectedAddressesValue, Model.Search.SelectListAddresses, new { @class = "form-control" })
+        </div>
+        <div style="padding:5px" class="col-xs-1">
+            <input type="submit" class="btn btn-success btn-group-justified pull-right" value="Filter" />
+        </div>
+    </div>
+}
+
+<br />
+<br />
+<table class="table table-condensed table-hover">
+    <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-1">Title</th>
+        <th class="col-xs-2">First name</th>
+        <th class="col-xs-2">Last name</th>
+        <th class="col-xs-2">Added</th>
+        <th class="col-xs-2">Modified</th>
+        <th class="col-xs-1"></th>
+        <th class="col-xs-1"></th>
+    </tr>
+    @foreach (var contact in Model.Contacts)
+    {
+        <tr>
+            <td>@contact.Id</td>
+            <td>@contact.Title</td>
+            <td>@contact.FirstName</td>
+            <td>@contact.LastName</td>
+            <td>@contact.AddedDate.ToShortDateString()</td>
+            <td>@contact.ModifiedDate.ToShortDateString()</td>
+            <td><button class="btn btn-default btn-group-justified" onclick="location.href='@Url.Action("Edit", "Contact", new { id = contact.Id})'">Edit</button></td>
+            <td><button class="btn btn-danger btn-group-justified" onclick="location.href='@Url.Action("Delete", "Contact", new { id = contact.Id})'">Delete</button></td>
+
+        </tr>
+    }
+</table>

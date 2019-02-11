@@ -17,6 +17,7 @@ namespace BreakAway.Entities
         public abstract ITable<Reservation> Reservations { get; }
         public abstract ITable<Lodging> Lodgings { get; }
         public abstract ITable<Event> Events { get; }
+        public abstract ITable<Address> Addresses { get; }
 
         public abstract void Save();
     }

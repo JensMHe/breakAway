@@ -1,0 +1,138 @@
+﻿@model BreakAway.Models.Contact.EditViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+<br />
+@if (!string.IsNullOrEmpty(ViewBag.message))
+{
+    <p class="text-warning" style="font-style:italic">@ViewBag.message</p>
+}
+<br />
+@Html.ActionLink("<-- Back to contact list", "Index")
+
+<br />
+<br />
+@using (Html.BeginForm("Edit", "Contact", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    @Html.HiddenFor(p => p.Id);
+    <fieldset class="well">
+        <legend>Customer Information</legend>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.TextBoxFor(p => p.FirstName, new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(p => p.LastName, new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+    <fieldset class="well">
+        <legend>New Address</legend>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th hidden="hidden">Id</th>
+                    <th>Street 1</th>
+                    <th>Street 2</th>
+                    <th>City</th>
+                    <th>Address type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="newAddressItem">
+                    <td hidden="hidden">
+                        <input type="hidden" id="newIndex"/>
+                        <input id="newId" type="hidden" />
+                    </td>
+                    <td>
+                        <input id="newStreet1" class="form-control" />
+                    </td>
+                    <td>
+                        <input id="newStreet2" class="form-control" />
+                    </td>
+                    <td>
+                        <input id="newCity" class="form-control" />
+                    </td>
+                    <td>
+                        <input id="newAddressType" class="form-control" />
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success addBtn">Add</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tr></tr>
+        </table>
+    </fieldset>
+
+    <fieldset class="well">
+        <legend>Addresses</legend>
+        <table class="table" id="addressList">
+            <thead>
+                <tr>
+                    <th hidden="hidden">Id</th>
+                    <th>Street 1</th>
+                    <th>Street 2</th>
+                    <th>City</th>
+                    <th>Address type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Addresses.Count; i++)
+                {
+                    <tr class="address">
+                        <td hidden="hidden">
+                            @Html.Hidden("addresses.Index", @i)
+                            @Html.TextBox("addresses[" + @i + "].Id",
+                   Model.Addresses[i].Id,
+                new { @readonly = "readonly", @class = "form-control" })
+                        </td>
+                        <td>
+                            @Html.TextBox("addresses[" + @i + "].Street1",
+                   Model.Addresses[i].Street1,
+                   new { @class = "form-control" })
+                        </td>
+                        <td>
+                            @Html.TextBox("addresses[" + @i + "].Street2",
+                   Model.Addresses[i].Street2,
+                   new { @class = "form-control" })
+                        </td>
+                        <td>
+                            @Html.TextBox("addresses[" + @i + "].City",
+                   Model.Addresses[i].City,
+                   new { @class = "form-control" })
+                        </td>
+                        <td>
+                            @Html.TextBox("addresses[" + @i + "].AddressType",
+                   Model.Addresses[i].AddressType,
+                   new { @class = "form-control addressTypeListItem", @style ="" })
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger deleteBtn">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </fieldset>
+    <input class="btn btn-success btn-block" id="saveBtn" type="submit" value="Save" />
+}

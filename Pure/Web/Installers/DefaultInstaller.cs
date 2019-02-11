@@ -4,6 +4,8 @@ using BreakAway.Entities;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using BreakAway.Services;
+using BreakAway.Services.Filters;
 
 namespace BreakAway.Installers
 {
@@ -20,6 +22,11 @@ namespace BreakAway.Installers
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             container.Register(Component.For<IBreakAwayContext>().UsingFactoryMethod(() => new BreakAwayContext(connectionString)));
+
+            container.Register(Component.For<IContactFilterService>().ImplementedBy<ContactFilterService>());
+
+            container.Register(Classes.FromAssemblyContaining<IFilterBy>().BasedOn<IFilterBy>().WithService.FromInterface());
+
         }
     }
 }

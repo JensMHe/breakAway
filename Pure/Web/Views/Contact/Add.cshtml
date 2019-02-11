@@ -1,0 +1,49 @@
+﻿@model BreakAway.Models.Contact.AddViewModel
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<br />
+@if (!string.IsNullOrEmpty(ViewBag.message))
+{
+    <p class="text-warning" style="font-style:italic">@ViewBag.message</p>
+}
+<br />
+@Html.ActionLink("<-- Back to contact list", "Index")
+
+<br />
+<br />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(p => p.Id);
+    @Html.AntiForgeryToken();
+
+    <fieldset class="well">
+        <legend>Customer Information</legend>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+
+                        @Html.TextBoxFor(p => p.FirstName, new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(p => p.LastName, new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <input class="btn btn-success btn-block" type="submit" value="Save" />
+}

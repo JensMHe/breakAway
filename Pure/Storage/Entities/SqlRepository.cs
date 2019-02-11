@@ -26,6 +26,7 @@ namespace BreakAway.Entities
             _payments = new DbSetTable<Payment>(_context.Payments);
             _reservations = new DbSetTable<Reservation>(_context.Reservations);
             _lodgings = new DbSetTable<Lodging>(_context.Lodgings);
+            _addresses = new DbSetTable<Address>(_context.Addresses);
         }
 
         private readonly ITable<Activity> _activities;
@@ -37,6 +38,7 @@ namespace BreakAway.Entities
         private readonly ITable<Payment> _payments;
         private readonly ITable<Reservation> _reservations;
         private readonly ITable<Lodging> _lodgings;
+        private readonly ITable<Address> _addresses;
 
         public override ITable<Activity> Activities
         {
@@ -83,9 +85,21 @@ namespace BreakAway.Entities
             get { return _lodgings; }
         }
 
+        public override ITable<Address> Addresses
+        {
+            get { return _addresses; }
+        }
+
         public override void Save()
         {
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                
+            }
         }
     }
 }
