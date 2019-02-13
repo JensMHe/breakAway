@@ -44,6 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Educations\Education.cs" />
+    <Compile Include="Core\Educations\EducationInstitute.cs" />
+    <Compile Include="Core\Institutes\Institute.cs" />
+    <Compile Include="Core\Institutes\InstituteLocation.cs" />
+    <Compile Include="Core\Institutes\InstituteSite.cs" />
     <Compile Include="Core\Sites\Site.cs" />
     <Compile Include="Core\Sites\SiteType.cs" />
     <Compile Include="Intranet\Users\Role.cs" />

@@ -1,0 +1,31 @@
+﻿@model BreakAway.Models.Sites.EducationViewModel
+
+@{
+    ViewBag.Title = "Educations";
+}
+
+<h2>Educations</h2>
+
+<div>
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Url</th>
+                <th>Institute</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var education in Model.Educations)
+            {
+                <tr>
+                    <td style="display:table-cell; max-width: 10vw; width:10vw; overflow: hidden;">@education.Id</td>
+                    <td style="display:table-cell; max-width: 30vw; width:30vw; overflow: hidden;">@education.Name</td>
+                    <td style="display:table-cell; max-width: 30vw; width:15vw; overflow: hidden;"><a href="@education.Url">@education.Url</a></td>
+                    <td style="display:table-cell; max-width: 30vw; width:15vw; overflow: hidden;">@education.InstituteName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,8 @@
+﻿@model IList<BreakAway.Models.Users.RolesListItem>
+
+<ul>
+    @foreach (var role in Model)
+    {
+        <li>@role.Name</li>
+    }
+</ul>

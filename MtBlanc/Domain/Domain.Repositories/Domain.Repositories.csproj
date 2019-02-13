@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Educations\EducationRepository.cs" />
+    <Compile Include="Core\Institutes\InstituteRepository.cs" />
     <Compile Include="Core\Sites\SiteRepository.cs" />
     <Compile Include="Intranet\Users\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

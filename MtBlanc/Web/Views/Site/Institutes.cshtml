@@ -1,0 +1,35 @@
+﻿@model BreakAway.Models.Sites.InstituteViewModel
+
+@{
+    ViewBag.Title = "Institutes";
+}
+
+<h2>Institutes</h2>
+
+<div>
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Url</th>
+                <th>Email</th>
+                <th>Site</th>
+                <th>OK</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var institute in Model.Institutes)
+            {
+                <tr>
+                    <td style="display:table-cell; max-width: 10vw; width:10vw; overflow: hidden;">@institute.Id</td>
+                    <td style="display:table-cell; max-width: 30vw; width:30vw; overflow: hidden;">@institute.Name</td>
+                    <td style="display:table-cell; max-width: 15vw; width:15vw; overflow: hidden;"><a href="@institute.Url">@institute.Url</a></td>
+                    <td style="display:table-cell; max-width: 15vw; width:15vw; overflow: hidden;">@institute.Email</td>
+                    <td style="display:table-cell; max-width: 20vw; width:20vw; overflow: hidden;">@institute.SiteName</td>
+                    <td style="max-width: 10vw; width:10vw;"><a href='@Url.Action("Educations", "Site", new { @id = institute.Id})' class="btn btn-info">Select</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

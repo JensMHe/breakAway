@@ -6,13 +6,14 @@
 <h2>Sites</h2>
 
 <div>
-    <table class="table">
+    <table class="table table-hover table-condensed">
         <thead>
         <tr>
             <th>ID</th>
             <th>Domain</th>
             <th>Is active</th>
             <th>Type</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@
                     <td>@site.Domain</td>
                     <td>@site.IsActive</td>
                     <td>@site.Type</td>
+                    <td><a href='@Url.Action("Institutes", "Site", new { @id = site.Id})' class="btn btn-info">Select</a></td>
                 </tr>
             }
         </tbody>

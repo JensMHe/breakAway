@@ -65,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreFluentMappers.cs" />
+    <Compile Include="Core\Educations\EducationModelMapper.cs" />
+    <Compile Include="Core\Institutes\InstituteModelMapper.cs" />
     <Compile Include="Core\Sites\SiteModelMapper.cs" />
     <Compile Include="Intranet\Users\UserModelMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

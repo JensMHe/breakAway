@@ -6,7 +6,7 @@
 <h2>Users</h2>
 
 <div>
-    <table class="table">
+    <table class="table" id="userTable">
         <thead>
             <tr>
                 <th>ID</th>
@@ -16,15 +16,62 @@
             </tr>
         </thead>
         <tbody>
-        @foreach (var user in Model.Users)
-        {
-            <tr>
-                <td>@user.Id</td>
-                <td>@user.Name</td>
-                <td>@user.Email</td>
-                <td>@user.Site</td>
-            </tr>
-        }
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Site</td>
+                    <td>
+                        <button id="@user.Id" class="btn btn-info btnModalTrigger" data-toggle="modal" data-target="#rolesModal">Roles</button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="rolesModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Roles</h4>
+            </div>
+            <div class="modal-body" id="rolesModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $(document).on('click', '.btnModalTrigger', function () {
+            var id = $(this).attr('id');
+
+            $.ajax({
+                type: "GET",
+                data: { id: id },
+                url: '@Url.Action("GetRoles", "user")',
+                dataType: "html",
+                contentType: 'application/json; charset=UTF-8',
+
+                success: function (response) {
+                    $('#rolesModalBody').html(response);
+                },
+                error: function (response) { alert("Fail!") }
+            });
+        })
+    });
+</script>

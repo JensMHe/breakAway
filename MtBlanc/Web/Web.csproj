@@ -183,7 +183,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Installers\ControllerInstaller.cs" />
+    <Compile Include="Models\Sites\EducationViewModel.cs" />
     <Compile Include="Models\Sites\IndexViewModel.cs" />
+    <Compile Include="Models\Sites\InstituteViewModel.cs" />
     <Compile Include="Models\Users\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -212,7 +214,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -228,6 +232,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Shared\_RolesPartialView.cshtml" />
+    <Content Include="Views\Site\Institutes.cshtml" />
+    <Content Include="Views\Site\Educations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
